@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/esm/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 const ProductCard = (props) => {
+  const clickHandler = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <Row>
       <Col>
@@ -13,7 +17,9 @@ const ProductCard = (props) => {
           <Card.Body>
             <Card.Title>{props.title}</Card.Title>
             <Card.Text>{props.price}</Card.Text>
-            <Button variant="primary">Add to Cart</Button>
+            <Button variant="primary" onClick={clickHandler}>
+              Add to Cart
+            </Button>
           </Card.Body>
         </Card>
       </Col>
