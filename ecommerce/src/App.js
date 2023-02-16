@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import About from "./components/Pages/About";
+import Home from "./components/Pages/Home";
 
 import Header from "./components/Layout/Header";
 import Container from "react-bootstrap/Container";
@@ -17,7 +18,7 @@ function App() {
       <Container>
         <Routes>
           <Route
-            path="/"
+            path="store"
             element={
               <>
                 <Cart />
@@ -35,6 +36,16 @@ function App() {
                 <Cart />
                 <Header />
                 <About />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="home"
+            element={
+              <>
+                <Header />
+                <Home />
                 <Footer />
               </>
             }

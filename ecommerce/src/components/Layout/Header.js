@@ -9,12 +9,12 @@ import HeaderCartButton from "./HeaderCartButton";
 const Header = (props) => {
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+      <Navbar.Brand href="/home">React-Bootstrap</Navbar.Brand>
       <Container className="justify-content-md-center">
         <Nav variant="pills">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="about">About</NavLink>
-          <Nav.Link href="#store">Store</Nav.Link>
+          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/store">Store</NavLink>
         </Nav>
       </Container>
       <HeaderCartButton />
