@@ -1,4 +1,7 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { Routes, Route } from "react-router-dom";
+
+import About from "./components/Pages/About";
 
 import Header from "./components/Layout/Header";
 import Container from "react-bootstrap/Container";
@@ -12,11 +15,31 @@ function App() {
   return (
     <CartProvider>
       <Container>
-        <Cart />
-        <Header />
-        <h2>React App</h2>
-        <Music />
-        <Footer />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Cart />
+                <Header />
+                <h2>React App</h2>
+                <Music />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="about"
+            element={
+              <>
+                <Cart />
+                <Header />
+                <About />
+                <Footer />
+              </>
+            }
+          />
+        </Routes>
       </Container>
     </CartProvider>
   );

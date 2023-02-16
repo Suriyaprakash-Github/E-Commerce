@@ -9,11 +9,12 @@ const Cart = (props) => {
       {[
         {
           id: 1,
+
           title: "Colors",
           price: 100,
         },
       ].map((item) => (
-        <li>{item.title}</li>
+        <li key={Math.random()}>{item.title}</li>
       ))}
     </ul>
   );
