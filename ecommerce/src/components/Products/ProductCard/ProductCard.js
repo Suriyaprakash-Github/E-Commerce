@@ -1,12 +1,21 @@
-import React, { useRef } from "react";
+import React, { useContext } from "react";
+import CartContext from "../../../store/cart-context";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/esm/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 const ProductCard = (props) => {
+  const cartCtx = useContext(CartContext);
+
   const clickHandler = (event) => {
     event.preventDefault();
+    cartCtx.addItem({
+      title: props.title,
+      price: props.price,
+      imageUrl: props.image,
+      Qty: 1,
+    });
   };
 
   return (
