@@ -11,6 +11,7 @@ import Footer from "./components/Layout/Footer";
 
 import Cart from "./components/Cart/Cart";
 import CartProvider from "./store/CartProvider";
+import ContactUs from "./components/Pages/ContactUs";
 
 function App() {
   return (
@@ -41,7 +42,18 @@ function App() {
             }
           />
           <Route
-            path="home"
+            path="contactus"
+            element={
+              <>
+                <Cart />
+                <Header />
+                <ContactUs />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/"
             element={
               <>
                 <Header />

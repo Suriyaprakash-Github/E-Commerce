@@ -12,9 +12,10 @@ const Header = (props) => {
       <Navbar.Brand href="/home">React-Bootstrap</Navbar.Brand>
       <Container className="justify-content-md-center">
         <Nav variant="pills">
-          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/">Home</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/store">Store</NavLink>
+          <NavLink to="/contactus">Contact Us</NavLink>
         </Nav>
       </Container>
       <HeaderCartButton />
