@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { Routes, Route } from "react-router-dom";
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import About from "./components/Pages/About";
 import Home from "./components/Pages/Home";
@@ -8,6 +8,7 @@ import Header from "./components/Layout/Header";
 import Container from "react-bootstrap/Container";
 import Music from "./components/Products/Music";
 import Footer from "./components/Layout/Footer";
+import ProductDetail from "./components/Pages/ProductDetails";
 
 import Cart from "./components/Cart/Cart";
 import CartProvider from "./store/CartProvider";
@@ -18,6 +19,7 @@ function App() {
     <CartProvider>
       <Container>
         <Routes>
+          <Route path="/" element={<Navigate to="/home" />} />
           <Route
             path="store"
             element={
@@ -30,6 +32,10 @@ function App() {
               </>
             }
           />
+          <Route
+            path="/products/:product_id"
+            element={<ProductDetail />}
+          ></Route>
           <Route
             path="about"
             element={
@@ -52,8 +58,9 @@ function App() {
               </>
             }
           />
+
           <Route
-            path="/"
+            path="/home"
             element={
               <>
                 <Header />

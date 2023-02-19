@@ -32,6 +32,8 @@ const Music = () => {
   const productList = productsArr.map((item) => (
     <ProductCard
       key={item.id}
+      _id={item._id}
+      id={item.id}
       title={item.title}
       price={item.price}
       image={item.imageUrl}
