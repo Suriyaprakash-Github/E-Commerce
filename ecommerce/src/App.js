@@ -25,15 +25,21 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route
+            exact
             path="store"
+            // element={!authCtx.isLoggedIn && <Navigate to="/store" />}
             element={
-              <>
-                <Cart />
-                <Header />
-                <h2>React App</h2>
-                <Music />
-                <Footer />
-              </>
+              !authCtx.isLoggedIn ? (
+                <Navigate exact to="/Login" />
+              ) : (
+                <>
+                  <Cart />
+                  <Header />
+                  <h2>React App</h2>
+                  <Music />
+                  <Footer />
+                </>
+              )
             }
           />
           <Route
@@ -63,11 +69,7 @@ function App() {
             }
           />
           <Route path="/Login" exact element={<LoginForm />} />
-          <Route
-            path="/Login"
-            exact
-            element={!authCtx.isLoggedIn && <Navigate to="/Login" />}
-          ></Route>
+          <Route path="/Login" exact></Route>
 
           <Route
             path="/home"

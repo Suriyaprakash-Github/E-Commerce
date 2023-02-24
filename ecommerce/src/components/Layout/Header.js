@@ -13,7 +13,7 @@ const Header = (props) => {
   const history = useNavigate();
   const logoutHandler = () => {
     authCtx.logout();
-    history("/Login");
+    history("/");
   };
   return (
     <Navbar bg="light" expand="lg">
