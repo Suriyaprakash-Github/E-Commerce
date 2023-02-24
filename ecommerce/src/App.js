@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import About from "./components/Pages/About";
@@ -13,8 +13,12 @@ import ProductDetail from "./components/Pages/ProductDetails";
 import Cart from "./components/Cart/Cart";
 import CartProvider from "./store/CartProvider";
 import ContactUs from "./components/Pages/ContactUs";
+import LoginContext from "./store/LoginContext";
+import LoginForm from "./components/Pages/LoginPage";
 
 function App() {
+  const authCtx = useContext(LoginContext);
+
   return (
     <CartProvider>
       <Container>
@@ -58,6 +62,12 @@ function App() {
               </>
             }
           />
+          <Route path="/Login" exact element={<LoginForm />} />
+          <Route
+            path="/Login"
+            exact
+            element={!authCtx.isLoggedIn && <Navigate to="/Login" />}
+          ></Route>
 
           <Route
             path="/home"
