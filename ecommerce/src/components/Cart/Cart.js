@@ -1,23 +1,24 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import cartContext from "./../../store/cart-context";
 import Button from "react-bootstrap/esm/Button";
 import Modal from "react-bootstrap/Modal";
 
 const Cart = (props) => {
+  let cartCtx = useContext(cartContext);
+
+  const loginEmail = cartCtx.email;
+
   const cartItems = (
     <ul>
-      {[
-        {
-          id: 1,
-
-          title: "Colors",
-          price: 100,
-        },
-      ].map((item) => (
+      {cartCtx.items.map((item) => (
         <li key={Math.random()}>{item.title}</li>
       ))}
     </ul>
   );
+
+  // localStorage
+  let cart = cartCtx.items;
+  localStorage.setItem(`${loginEmail}`, JSON.stringify(cart));
 
   return (
     <Modal
@@ -34,7 +35,7 @@ const Cart = (props) => {
         <p>
           {cartItems}
           <span>Total Amount</span>
-          <span>99.46</span>
+          <span>{cartCtx.totalAmount}</span>
         </p>
       </Modal.Body>
       <Modal.Footer>

@@ -1,0 +1,16 @@
+.nav {
+  justify-content: center;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(59, 55, 55);
+  margin: auto 10px;
+}
+
+.logoutBtn {
+  background-color: rgb(86, 86, 252);
+  color: white;
+  border-radius: 5px;
+  border: none;
+}

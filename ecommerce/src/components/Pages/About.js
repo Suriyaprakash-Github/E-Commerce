@@ -5,7 +5,7 @@ import image from "../Assets/band.png";
 const About = () => {
   return (
     <Container style={{ marginTop: "3rem" }}>
-      <Row>
+      <Row className="justify-content-center">
         <Col xs={6}>
           <Card.Title style={{ textAlign: " center" }}>ABOUT</Card.Title>
           <Card.Body>

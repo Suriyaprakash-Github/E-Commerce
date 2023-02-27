@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import LoginContext from "./../../store/LoginContext";
 
 import HeaderCartButton from "./HeaderCartButton";
+import classes from "./Header.module.css";
 
 const Header = (props) => {
   const authCtx = useContext(LoginContext);
@@ -19,13 +20,29 @@ const Header = (props) => {
     <Navbar bg="light" expand="lg">
       <Navbar.Brand href="/home">React-Bootstrap</Navbar.Brand>
       <Container className="justify-content-md-center">
-        <Nav variant="pills">
-          <NavLink to="/home">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/store">Store</NavLink>
-          <NavLink to="/contactus">Contact Us</NavLink>
-          <NavLink to="/Login">LOGIN</NavLink>
-          <button onClick={logoutHandler}> Logout </button>
+        <Nav variant="pills" className={classes.nav}>
+          <NavLink className={classes.link} to="/home">
+            Home
+          </NavLink>
+          <NavLink className={classes.link} to="/about">
+            About
+          </NavLink>
+          <NavLink className={classes.link} to="/store">
+            Store
+          </NavLink>
+          <NavLink className={classes.link} to="/contactus">
+            Contact Us
+          </NavLink>
+          {!authCtx.isLoggedIn ? (
+            <NavLink className={classes.link} to="/Login">
+              Login
+            </NavLink>
+          ) : (
+            <button className={classes.logoutBtn} onClick={logoutHandler}>
+              {" "}
+              Logout{" "}
+            </button>
+          )}
         </Nav>
       </Container>
       <HeaderCartButton />

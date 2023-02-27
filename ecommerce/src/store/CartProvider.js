@@ -1,5 +1,6 @@
-import React, { useReducer } from "react";
+import React, { useContext, useReducer } from "react";
 import CartContext from "./cart-context";
+import LoginContext from "./LoginContext";
 
 const defaultCartSatate = {
   items: [],
@@ -8,8 +9,7 @@ const defaultCartSatate = {
 const cartReducer = (state, action) => {
   if (action.type === "ADD") {
     const updatedItems = state.items.concat(action.item);
-    const updatedTotalAmount =
-      state.totalAmount + action.item.price * action.item.amount;
+    const updatedTotalAmount = state.totalAmount + action.item.price;
     return {
       items: updatedItems,
       totalAmount: updatedTotalAmount,
@@ -19,6 +19,10 @@ const cartReducer = (state, action) => {
 };
 
 const CartProvider = (props) => {
+  const authCtx = useContext(LoginContext);
+  const email = authCtx.email;
+  // console.log(email);
+
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
     defaultCartSatate
@@ -35,6 +39,7 @@ const CartProvider = (props) => {
   const cartContext = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
+    email: email,
     addItem: addItemToCart,
     removeItem: removeItemFromCart,
   };

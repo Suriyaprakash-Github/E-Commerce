@@ -3,7 +3,6 @@ import CartContext from "../../../store/cart-context";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
-import { NavLink } from "react-bootstrap";
 
 const ProductCard = (props) => {
   const cartCtx = useContext(CartContext);
@@ -17,7 +16,6 @@ const ProductCard = (props) => {
       Qty: 1,
     });
   };
-
   return (
     <>
       <Card style={{ width: "18rem" }}>
