@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
 
-import classes from "./ContactUs.module.css";
+import classes from './ContactUs.module.css';
 
 const ContactUs = () => {
   const name = useRef();
@@ -16,30 +16,35 @@ const ContactUs = () => {
       phoneNumber: phoneNumber.current.value,
     };
 
-    fetch("https://ecomm-c1511-default-rtdb.firebaseio.com/contactus.json", {
-      method: "POST",
-      body: JSON.stringify(userData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    fetch(
+      'https://e-commerce-896c9-default-rtdb.firebaseio.com/userForm.json',
+      {
+        method: 'POST',
+        body: JSON.stringify(userData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
 
-    name.current.value = "";
-    email.current.value = "";
-    phoneNumber.current.value = "";
+    name.current.value = '';
+    email.current.value = '';
+    phoneNumber.current.value = '';
   };
 
   return (
     <div className={classes.contact}>
+      
+
       <form className={classes.form} onSubmit={onSubmitHandler}>
-        <label htmlFor="name">Name</label>
-        <input id="name" type="text" ref={name} />
-        <label htmlFor="email">Email</label>
-        <input id="email" type="email" ref={email} />
-        <label htmlFor="phoneNumber">Phone Number</label>
-        <input id="phoneNumber" type="number" ref={phoneNumber} />
+        <label htmlFor='name'>Name</label>
+        <input id='name' type='text' ref={name} />
+        <label htmlFor='email'>Email</label>
+        <input id='email' type='email' ref={email} />
+        <label htmlFor='phoneNumber'>Phone Number</label>
+        <input id='phoneNumber' type='number' ref={phoneNumber} />
         <div>
-          <button type="submit">Submit</button>
+          <button type='submit'>Submit</button>
         </div>
       </form>
     </div>

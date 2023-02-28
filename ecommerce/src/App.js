@@ -1,89 +1,96 @@
-import React, { useContext } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-
-import About from "./components/Pages/About";
-import Home from "./components/Pages/Home";
-
-import Header from "./components/Layout/Header";
-import Container from "react-bootstrap/Container";
-import Music from "./components/Products/Music";
-import Footer from "./components/Layout/Footer";
-import ProductDetail from "./components/Pages/ProductDetails";
-
-import Cart from "./components/Cart/Cart";
-import CartProvider from "./store/CartProvider";
-import ContactUs from "./components/Pages/ContactUs";
-import LoginContext from "./store/LoginContext";
-import LoginForm from "./components/Pages/LoginPage";
+import { Fragment, useState, useContext, useEffect } from "react";
+import axios from "axios";
+import { Route, Redirect, Switch } from "react-router-dom";
+import Header from "./Components/Layout/Header/Header";
+import Footer from "./Components/Layout/Footer/Footer";
+import Cart from "./Components/Cart/Cart";
+import CartProvider from "./Components/Store/CartProvider";
+import AboutUs from "./Components/Pages/AboutUs";
+import Home2 from "./Components/Pages/Home2";
+import Store from "./Components/Pages/Store";
+import ContactUs from "./Components/Pages/ContactUs";
+import ProductDetail from "./Components/Pages/ProductDetails";
+import LoginForm from "./Components/Pages/LoginPage";
+import LoginContext from "./Components/Store/LoginContext";
+import CartContext from "./Components/Store/cart-context";
 
 function App() {
+  if (!localStorage.getItem("email")) {
+    localStorage.setItem("email", "");
+  }
+
   const authCtx = useContext(LoginContext);
+  const cartCtx = useContext(CartContext);
+  let email = localStorage.getItem("email").replace(".", "").replace("@", "");
+
+  const [cartIsShown, setCartIsShown] = useState(false);
+
+  const ShowCartHandler = () => {
+    setCartIsShown(true);
+  };
+
+  const HideCartHandler = () => {
+    setCartIsShown(false);
+  };
+
+  useEffect(() => {
+    if (!email) return;
+    axios
+      .get(
+        `https://crudcrud.com/api/a3240a552a12475abbb802a23eccc6f0/cart${email}`
+      )
+      .then((res) => {
+        const data = res.data;
+        for (const key in data) {
+          const item = data[key];
+          item._id = key;
+          cartCtx.mapID(item);
+        }
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }, [email, cartCtx]);
 
   return (
-    <CartProvider>
-      <Container>
-        <Routes>
-          <Route path="/" element={<Navigate to="/home" />} />
-          <Route
-            exact
-            path="store"
-            // element={!authCtx.isLoggedIn && <Navigate to="/store" />}
-            element={
-              !authCtx.isLoggedIn ? (
-                <Navigate exact to="/Login" />
-              ) : (
-                <>
-                  <Cart />
-                  <Header />
-                  <h2>React App</h2>
-                  <Music />
-                  <Footer />
-                </>
-              )
-            }
-          />
-          <Route
-            path="/products/:product_id"
-            element={<ProductDetail />}
-          ></Route>
-          <Route
-            path="about"
-            element={
-              <>
-                <Cart />
-                <Header />
-                <About />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="contactus"
-            element={
-              <>
-                <Cart />
-                <Header />
-                <ContactUs />
-                <Footer />
-              </>
-            }
-          />
-          <Route path="/Login" exact element={<LoginForm />} />
-          <Route path="/Login" exact></Route>
+    <Fragment>
+      <CartProvider>
+        {cartIsShown && <Cart onClose={HideCartHandler} />}
+        <Header onShowCart={ShowCartHandler} />
 
-          <Route
-            path="/home"
-            element={
-              <>
-                <Header />
-                <Home />
-                <Footer />
-              </>
-            }
-          />
-        </Routes>
-      </Container>
-    </CartProvider>
+        <Route path="/" exact>
+          <Redirect to="/Login" />
+        </Route>
+
+        <Route path="/AboutUs">
+          <AboutUs />
+        </Route>
+
+        <Route path="/Home">
+          <Home2 />
+        </Route>
+
+        <Route path="/Store">
+          {authCtx.isLoggedIn && <Store />}
+          {!authCtx.isLoggedIn && <Redirect to="/Login" />}
+        </Route>
+
+        <Route path="/ContactUs">
+          <ContactUs />
+        </Route>
+
+        <Route path="/products/:product_id">
+          <ProductDetail />
+        </Route>
+
+        <Route path="/Login" exact>
+          <LoginForm />
+          {!authCtx.isLoggedIn && <Redirect to="/Login" />}
+        </Route>
+
+        <Footer />
+      </CartProvider>
+    </Fragment>
   );
 }
 

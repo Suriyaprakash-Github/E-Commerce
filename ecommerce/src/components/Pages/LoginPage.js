@@ -1,18 +1,19 @@
 import { useState, useRef, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import LoginContext from "../../store/LoginContext";
+import { useHistory } from "react-router-dom";
+import LoginContext from "../Store/LoginContext";
 
 import classes from "./Login.module.css";
 
 const LoginForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-  const history = useNavigate();
+  const history = useHistory();
 
   const authCtx = useContext(LoginContext);
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setLoading] = useState(false);
+
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
@@ -21,6 +22,8 @@ const LoginForm = () => {
     event.preventDefault();
     const enteredEmail = emailInputRef.current.value;
     const enteredPswd = passwordInputRef.current.value;
+
+    localStorage.setItem("email", enteredEmail);
 
     setLoading(true);
     let url;
@@ -62,9 +65,8 @@ const LoginForm = () => {
         }
       })
       .then((data) => {
-        authCtx.login(data.idToken, data.email);
-
-        history("/store");
+        authCtx.login(data.idToken);
+        history.replace("/Store");
       })
       .catch((err) => {
         alert(err.message);

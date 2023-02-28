@@ -1,54 +1,54 @@
-import React from "react";
-import classes from "./Home.module.css";
-
+import { Fragment } from "react";
+import { Button, Col, Row } from "react-bootstrap";
+import Icon from "../Images/icon.ico";
+import classes from "./Home.css";
+import "./Home.css";
 const Home = () => {
   return (
-    <>
-      <section id="tours" className={classes.container}>
-        <h2>TOURS</h2>
-        <div>
-          <div className={classes.touritem}>
-            <span className={classes.tourdate}>JUL16</span>
-            <span className={classes.tourplace}>DETROIT, MI</span>
-            <span className={classes.tourspecplace}>
-              DTE ENERGY MUSIC THEATRE
-            </span>
-            <button className={classes.buybtn}>BUY TICKETS</button>
-          </div>
-          <div className={classes.touritem}>
-            <span className={classes.tourdate}>JUL19</span>
-            <span className={classes.tourplace}>TORONTO,ON</span>
-            <span className={classes.tourspecplace}>BUDWEISER STAGE</span>
-            <button className={classes.buybtn}>BUY TICKETS</button>
-          </div>
-          <div className={classes.touritem}>
-            <span className={classes.tourdate}>JUL 22</span>
-            <span className={classes.tourplace}> BRISTOW, VA</span>
-            <span className={classes.tourspecplace}>JIGGY LUBE LIVE</span>
-            <button className={classes.buybtn}>BUY TICKETS</button>
-          </div>
-          <div className={classes.touritem}>
-            <span className={classes.tourdate}>JUL 29</span>
-            <span className={classes.tourplace}>PHOENIX, AZ</span>
-            <span className={classes.tourspecplace}> AK-CHIN PAVILION</span>
-            <button className={classes.buybtn}>BUY TICKETS</button>
-          </div>
-          <div className={classes.touritem}>
-            <span className={classes.tourdate}>AUG 2</span>
-            <span className={classes.tourplace}>LAS VEGAS, NV</span>
-            <span className={classes.tourspecplace}>T-MOBILE ARENA</span>
-            <button className={classes.buybtn}>BUY TICKETS</button>
-          </div>
-          <div className={classes.touritem}>
-            <span className={classes.tourdate}>AUG 7</span>
-            <span className={classes.tourplace}>CONCORD, CA</span>
-            <span className={classes.tourspecplace}> CONCORD PAVILION</span>
-            <button className={classes.buybtn}>BUY TICKETS</button>
-          </div>
+    <Fragment>
+      <div className="div">
+        <Row>
+          <Col className="text-center">
+            <Button
+              variant="primary"
+              style={{ fontSize: "25px" }}
+              className="btn"
+            >
+              Get our Latest Album
+            </Button>
+            <br />
+            <a rel="noreferrer" href="/" target="_blank">
+              <img src={Icon} alt="Play" />
+            </a>
+          </Col>
+        </Row>
+      </div>
+      <h2 className="h2"> Tours </h2>
+
+      <section>
+        <div className="para">
+          <p>
+            JUL16 MUMBAI.SUN TOE ALBUM
+            <button className="button1">BUY TICKETS</button>
+          </p>
+          <p>
+            TAJ ALBUM,MUMBAI <button className="button1">BUY TICKETS</button>
+          </p>
+          <p>
+            ROZ ALBUM,PUNE <button className="button1">BUY TICKETS</button>
+          </p>
+          <p>
+            MIMMI ALBUM,MUMBAI <button className="button1">BUY TICKETS</button>
+          </p>
+          <p>
+            LIGGI ALBUM,MUMBAI <button className="button1">BUY TICKETS</button>
+          </p>
+          <p>
+            ROSHNI ALBUM,MUMBAI <button className="button1">BUY TICKETS</button>
+          </p>
         </div>
       </section>
-    </>
+    </Fragment>
   );
 };
-
 export default Home;

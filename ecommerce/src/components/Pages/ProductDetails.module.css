@@ -1,32 +1,31 @@
-.sections {
-  display: flex;
-  justify-content: center;
-  margin: 60px;
+.img{
+    margin-top: 80px;
+    padding: 229px;
+    transition: transform .2s;
 }
-.details {
-  padding: 20px 90px;
-}
-.img {
-  transition: transform 0.2s;
-}
+
 .img:hover {
-  transform: scale(1.2);
+    transform: scale(1.5); 
+  }
+
+.title {
+    margin-left: 50px;
 }
-.price {
-  color: #00adb5;
-  font-size: 20px;
-  border: 2px solid #00adb5;
-  padding: 5px 10px;
-  background-color: #eeeeee;
-  display: block;
+
+.section {
+    display: flex;
+   margin-top: 3rem;
+   margin-right: 24rem;
 }
-.rating {
-  border-radius: 20px;
-  padding: 8px 16px;
-  background-color: #00adb5;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
+
 .reviews {
-  text-align: center;
+    padding: 20px;
+}
+
+.img2{
+    margin-top: 60px;
+    padding: 30px;
+    width: 150px;
+    height: 150px;
+   
 }
